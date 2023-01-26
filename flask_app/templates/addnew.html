@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css')}}">
+  <title>Group Workout Tracker</title>
+</head>
+
+<body>
+  <div class="heading">
+    <header>
+      <h1>Group Workout Tracker</h1>
+    </header>
+  </div>
+
+
+  <div class="topcontainer">
+    <div class="user">
+      <h2>{{current_user.first_name}} {{current_user.last_name}}</h2>
+      <a href="/workouts">Dashboard</a>
+      <a class=navLink href="/logout">Log Out</a>
+
+    </div>
+
+  </div>
+
+  <div class="containerX">
+    <div class="WOhead">
+      <h3>Submit a Workout</h3>
+      <br>
+    </div>
+
+    <div class="row">
+
+
+      <div class="col-2">
+        <div class="incol">
+          <div class="post">
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            {% for message in messages %}
+            <p class="error">{{message}}</p>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+            <form action="/post/create" method="POST">
+              <p class=formInput>Activity: <input type="text" name="activity"></p>
+              <br>
+              <label for="start">Duration of Workout (minutes):</label>
+              <input type="duration" name="duration">
+              <br>
+              <br>
+              <p>Positives:</p>
+              <textarea name="positives"></textarea>
+              <br>
+              <br>
+              <p>Negatives:</p>
+              <textarea name="negatives"></textarea>
+              <br>
+              <br>
+              <label for="start">Date of Workout:</label>
+              <input type="date" id="start" name="date">
+              <br>
+              <br>
+              <button type="submit">Submit Workout</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+</body>
+
+
+</html>

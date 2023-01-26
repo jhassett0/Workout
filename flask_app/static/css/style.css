@@ -1,0 +1,89 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  max-width: 1270px;
+  margin: 0 auto;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.dashlay {
+  display: flex;
+  justify-content: space-around;
+}
+
+
+#sitenav {
+  color: black;
+}
+
+.main {
+  height: 200px;
+  width: 400px;
+  border: 1px solid #ccc;
+  font: 16px/26px arial;
+  overflow: auto;
+}
+
+h1 {
+
+  color: black;
+  text-align: center;
+  font-style: italic;
+  font-size: 50px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+h2,
+h3 {
+  color: black;
+  font-style: italic;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.error {
+  color: red;
+}
+
+.topcontainer {
+  text-align: right;
+  margin: 30px 60px 15px 60px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.containerX {
+  width: 1080px;
+  margin: 0 auto;
+}
+
+.row {
+  display: flex;
+}
+
+.col-2 {
+  margin: 0px;
+  padding: 10px;
+  flex: 1;
+  border: 1px solid black;
+  overflow: auto;
+  font-family: Arial, Helvetica, sans-serif;
+
+}
+
+.WOhead {
+  margin-left: 0px;
+  margin-top: 0px;
+}
+
+a {
+  height: 35px;
+  width: 100px;
+  font-size: 14px;
+}
+
+#name {
+  font-weight: 900;
+}

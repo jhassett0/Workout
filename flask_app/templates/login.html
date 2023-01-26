@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css')}}">
+  <title>Group Workout Tracker</title>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Group Workout Tracker</h1>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="dashlay">
+      <div id="sitenav">
+        <h2>Login</h2>
+        <form action="/login" method="POST">
+          {% with messages = get_flashed_messages(category_filter=["loginError"]) %}
+          {% if messages %}
+          {% for message in messages %}
+          <p class=error>{{message}}</p>
+          {% endfor %}
+          {% endif %}
+          {% endwith %}
+          <p class=formInput>Email: <input type="text" name="email"></p>
+          <p class=formInput>Password: <input type="password" name="password"></p>
+          <button class=formButton>Login</button>
+        </form>
+      </div>
+      <br>
+      <p>- OR -</p>
+      <br>
+      <div id="form">
+        <h2>Register</h2>
+        <form action="/register" method='POST'>
+          {% with messages = get_flashed_messages(category_filter=["regError"]) %}
+          {% if messages %}
+          {% for message in messages %}
+          <p class=error>{{message}}</p>
+          {% endfor %}
+          {% endif %}
+          {% endwith %}
+          <p class=formInput>First Name: <input type="text" name="first_name"></p>
+          <p class=formInput>Last Name: <input type="text" name="last_name"></p>
+          <p class=formInput>Email: <input type="text" name="email"></p>
+          <p class=formInput>Password: <input type="password" name="password"></p>
+          <p class=formInput>Confirm Password: <input type="password" name="passConf"></p>
+          <button class=formButton>Register</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>

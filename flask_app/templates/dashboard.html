@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css')}}">
+  <title>Dashboard</title>
+</head>
+
+
+
+<body>
+  <div class="heading">
+    <header>
+      <h1>Group Workout Tracker</h1>
+    </header>
+  </div>
+
+  <div class="topcontainer">
+    <div class="user">
+      <h2>{{current_user.first_name}} {{current_user.last_name}}</h2>
+    </div>
+    <div class="sitenav">
+      <a href="/workouts/create">Submit a Workout</a>
+      <a class="actionbtn" href="/logout">Log Out</a>
+    </div>
+
+  </div>
+
+  <div class="containerX">
+    <div class="WOhead">
+      <h2> Workouts: </h2>
+      <br>
+    </div>
+
+    <div class="row">
+
+
+      <div class="col-2">
+        <div class="incol">
+          <div class="post">
+            {% for workout in all_workouts %}
+            <p id="name">{{workout.activity}}</p>
+            <p>Date of Workout: {{workout.date.strftime("%m/%d/%Y")}}</p>
+            <p>Submitted by: {{workout.creator.first_name}} {{workout.creator.last_name}}</p>
+
+            <p>{{workout.users_who_liked | length}} like(s)</p>
+            {% if session.user_id in workout.users_who_liked | map(attribute='id') %}
+            <form action="/likes/{{workout.id}}/unlike" method="POST">
+              <input name="id" type="hidden" value="{{workout.id}}">
+              <input name="user_id" type="hidden" value="{{session.user_id}}">
+              <button class="actionbtn" type="submit"> Unlike this Workout </button>
+            </form>
+
+            {% else %}
+
+            <form action="/likes/{{workout.id}}/like" method="POST">
+              <input name="id" type="hidden" value="{{workout.id}}">
+              <input name="user_id" type="hidden" value="{{session.user_id}}">
+              <button class="actionbtn" type="submit"> Like this Workout </button>
+            </form>
+          </div>
+
+          {% endif %}
+
+          <div class="actions">
+            <a class="actionbtn" href="/workout/show/{{ workout.id }}">View Workout</a>
+            {% if current_user.id == workout.users_id %}
+            <a class="actionbtn" href="/workouts/edit/{{ workout.id }}">Edit</a>
+            <a class="actionbtn" href="/workouts/destroy/{{ workout.id }}">Delete</a>
+            {% endif %}
+            <br>
+            <br>
+            <br>
+
+
+
+
+            {% endfor %}
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
